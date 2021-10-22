@@ -1,0 +1,128 @@
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Name:   Olivia Xu</span>
+<span class="sd">Student Number: 20258783</span>
+<span class="sd">Email:  20cx9@queensu.ca</span>
+
+<span class="sd">I confirm that this assignment solution is my own work and conforms to</span>
+<span class="sd">Queen&#39;s standards of Academic Integrity&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter.filedialog</span> <span class="kn">import</span> <span class="n">askdirectory</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="c1"># Please be patient running my code. It works but it takes a while. Thank you so much for your time</span>
+
+
+<span class="k">def</span> <span class="nf">letters_only</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;removes all non-alpha characters from a string</span>
+
+<span class="sd">    parameter:</span>
+<span class="sd">       w - string</span>
+
+<span class="sd">    return : string containing only the alpha characters in w</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_word</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">w</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+            <span class="n">new_word</span> <span class="o">+=</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">new_word</span>
+
+
+<span class="c1"># load the set of stop words from stopwords.txt</span>
+<span class="n">stop_words_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;stopwords.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stop_words_file</span><span class="p">:</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">letters_only</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">stop_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<span class="c1"># print(stop_words)</span>
+
+
+<span class="c1"># determine the set of words that represents the file</span>
+<span class="k">def</span> <span class="nf">set_of_words</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    determines the set of words that represents the file</span>
+
+<span class="sd">    parameter: file - string that indicates the path to the .txt file</span>
+
+<span class="sd">    return: set containing words that occurs no fewer than 5 times in the file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">word_counts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">letters_only</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="c1"># ignore word if it is a stop word</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_counts</span><span class="p">:</span>
+                    <span class="n">word_counts</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">word_counts</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">word_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_counts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word_counts</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">word_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">word_set</span>
+
+
+<span class="c1"># apply Jaccard Similarty</span>
+<span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculates the Jaccard Similarity of set1 and set2</span>
+
+<span class="sd">    parameters: set1, set2 - set</span>
+
+<span class="sd">    return: similarity as a float ratio</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">union</span> <span class="o">=</span> <span class="n">set1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
+    <span class="n">intersection</span> <span class="o">=</span> <span class="n">set1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">union</span><span class="p">)</span>
+
+
+<span class="c1"># let the user choose the directory where the text documents are located</span>
+<span class="n">data_directory</span> <span class="o">=</span> <span class="n">askdirectory</span><span class="p">(</span><span class="n">initialdir</span><span class="o">=</span><span class="s2">&quot;/texts&quot;</span><span class="p">)</span>
+
+<span class="c1"># access all the files in that directory with &quot;.txt&quot; extension</span>
+<span class="n">text_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">data_directory</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="s2">&quot;*.txt&quot;</span><span class="p">)</span>
+<span class="c1"># print(text_files)</span>
+
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">text1</span> <span class="ow">in</span> <span class="n">text_files</span><span class="p">:</span>
+    <span class="n">text1_name</span> <span class="o">=</span> <span class="n">text1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">greatest_sim</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">most_sim_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">text2</span> <span class="ow">in</span> <span class="n">text_files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">text1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">text2</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">similarity</span><span class="p">(</span><span class="n">set_of_words</span><span class="p">(</span><span class="n">text1</span><span class="p">),</span> <span class="n">set_of_words</span><span class="p">(</span><span class="n">text2</span><span class="p">))</span>
+            <span class="n">text2_name</span> <span class="o">=</span> <span class="n">text2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="n">greatest_sim</span><span class="p">:</span>
+                <span class="n">greatest_sim</span> <span class="o">=</span> <span class="n">s</span>
+                <span class="n">most_sim_text</span> <span class="o">=</span> <span class="n">text2_name</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">text1_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">most_sim_text</span><span class="p">,</span> <span class="n">greatest_sim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+
+<span class="c1"># present the results in tkinter</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">window</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;1200x800&quot;</span><span class="p">)</span>
+<span class="n">col_0_head</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; Document &quot;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">col_0_head</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">col_1_head</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; Document with the greatest similarity &quot;</span><span class="p">)</span>
+<span class="n">col_1_head</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">col_2_head</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; Jaccard similarity between the two &quot;</span><span class="p">)</span>
+<span class="n">col_2_head</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">col0</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
+    <span class="n">col0</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">col1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">col2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">window</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>

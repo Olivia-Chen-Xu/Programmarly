@@ -1,0 +1,127 @@
+"""Name:   Olivia Xu
+Student Number: 20258783
+Email:  20cx9@queensu.ca
+
+I confirm that this assignment solution is my own work and conforms to
+Queen's standards of Academic Integrity"""
+
+import tkinter as tk
+from tkinter.filedialog import askdirectory
+import glob
+
+# Please be patient running my code. It works but it takes a while. Thank you so much for your time
+
+
+def letters_only(w):
+    """removes all non-alpha characters from a string
+
+    parameter:
+       w - string
+
+    return : string containing only the alpha characters in w
+    """
+    new_word = ""
+    for c in w:
+        if c.isalpha():
+            new_word += c
+    return new_word
+
+
+# load the set of stop words from stopwords.txt
+stop_words_file = open("stopwords.txt", "r")
+stop_words = set()
+for line in stop_words_file:
+    word = letters_only(line)
+    stop_words.add(word)
+# print(stop_words)
+
+
+# determine the set of words that represents the file
+def set_of_words(file):
+    """
+    determines the set of words that represents the file
+
+    parameter: file - string that indicates the path to the .txt file
+
+    return: set containing words that occurs no fewer than 5 times in the file
+    """
+    text = open(file, "r")
+    word_counts = {}
+    for line in text:
+        words = line.split()
+        for word in words:
+            word = word.lower()
+            word = letters_only(word)
+            # ignore word if it is a stop word
+            if word not in stop_words:
+                if word in word_counts:
+                    word_counts[word] += 1
+                else:
+                    word_counts[word] = 1
+    word_set = set()
+    for word in word_counts:
+        if word_counts[word] >= 5 and len(word) > 1:
+            word_set.add(word)
+    return word_set
+
+
+# apply Jaccard Similarty
+def similarity(set1, set2):
+    """
+    calculates the Jaccard Similarity of set1 and set2
+
+    parameters: set1, set2 - set
+
+    return: similarity as a float ratio
+    """
+    union = set1.union(set2)
+    intersection = set1.intersection(set2)
+    return len(intersection) / len(union)
+
+
+# let the user choose the directory where the text documents are located
+data_directory = askdirectory(initialdir="/texts")
+
+# access all the files in that directory with ".txt" extension
+text_files = glob.glob(data_directory + "/" + "*.txt")
+# print(text_files)
+
+
+results = {}
+for text1 in text_files:
+    text1_name = text1.split("/")[-1]
+    greatest_sim = 0
+    most_sim_text = ""
+
+    for text2 in text_files:
+        if text1 is not text2:
+            s = similarity(set_of_words(text1), set_of_words(text2))
+            text2_name = text2.split("/")[-1]
+            if s > greatest_sim:
+                greatest_sim = s
+                most_sim_text = text2_name
+    results[text1_name] = (most_sim_text, greatest_sim)
+print(results)
+
+
+# present the results in tkinter
+window = tk.Tk()
+window.geometry("1200x800")
+col_0_head = tk.Label(window, text=" Document ", pady=20)
+col_0_head.grid(row=0, column=0)
+col_1_head = tk.Label(window, text=" Document with the greatest similarity ")
+col_1_head.grid(row=0, column=1)
+col_2_head = tk.Label(window, text=" Jaccard similarity between the two ")
+col_2_head.grid(row=0, column=2)
+
+i = 1
+for doc, result in results.items():
+    col0 = tk.Label(window, text=doc)
+    col0.grid(row=i, column=0)
+    col1 = tk.Label(window, text=result[0])
+    col1.grid(row=i, column=1)
+    col2 = tk.Label(window, text=result[1])
+    col2.grid(row=i, column=2)
+    i += 1
+
+window.mainloop()
