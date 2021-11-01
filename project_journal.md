@@ -29,10 +29,3 @@ We can download and use their model since it is open-source.
 
  ### What was done this week:
  - Olivia wrote the web scraper to extract our Y labels from the pygments html output
- - Once that is done, we need to select/download our data from the TransCode evaluation datasets and run pygment+webscraper on the data. 
- - We also need to try out the CodeGen model.
-
- ### Additional notes:
- - **How to test the CodeGen model on a script:**
- Clone or download the CodeGen repo and run install_env.sh (located in the main folder) to install necessary packages. 
- (add additional instructions here)
