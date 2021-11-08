@@ -50,7 +50,8 @@
  3) Complete the tasks from last week
 
  ### What was done this week:
- - 
+ - Olivia, Nadia, Maisha : tried and failed to run the FB model :) waited for mentor's help
+
 
  ### Additional notes:
- -
+ - **How to test the CodeGen model:** download the entire [CodeGen](https://github.com/facebookresearch/CodeGen) repository, download [Anaconda](https://www.anaconda.com/products/individual#Downloads), launch the *Anaconda Prompt* terminal (NOT the regular terminal cmd.exe that is on your computer by default), run `cd C:\insert_path_to_the_installenv_file` to navigate to the correct directory on your machine, then run the command `install_env.sh` to install necessary packages and dependencies. When prompted, enter `y` to continue installing. And then we get errors ! Clearer instructions coming soon.
