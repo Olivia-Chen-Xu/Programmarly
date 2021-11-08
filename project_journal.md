@@ -48,6 +48,7 @@
  1) Install [mini conda](https://docs.conda.io/en/latest/miniconda.html) 
  2) Figure out how to use the [Borealis infrastructure](https://www.notion.so/On-boarding-to-Borealis-Infrastructure-a43b0a9512054b52882e1d5b446f0ec6) so we can run all our stuff on the Borealis servers (instead of our own computers)
  3) Complete the tasks from last week
+ 4) We might want to use [github boards](https://docs.github.com/en/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards) to organize our project
 
  ### What was done this week:
  - Olivia, Nadia, Maisha : tried and failed to run the FB model :) waited for mentor's help
