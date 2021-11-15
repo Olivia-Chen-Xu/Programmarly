@@ -72,10 +72,11 @@
 - Giuseppe will try to get the CodeGen working tonight, and if it doesn't work he will send us further instructions + tutorials on the above libraries.
 
  ## To-do list:
- 1) TBD
+ 1) We need to obtain a dataset of built-in functions for each language + their description. If we can't find available online, we can build it using a web scraper on the online documentation for each language (ex: [Python](https://docs.python.org/3/library/functions.html)). **What should this dataset look like?**  
+ 2) We can then use Word2Vec on it.
  
  ## What was done this week:
- - 
+ - Nadia : looked into Gensim + Word2Vec, followed a tutorial, and added new tasks.  
 
  ## Additional notes:
  - 
