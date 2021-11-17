@@ -81,3 +81,25 @@
  ## Additional notes:
  - 
  </details>
+
+ <details>
+<summary> Meeting #7 - Nov. 17th </summary>
+<br>
+
+## Discussion items : 
+- We tried and failed to run the CodeGen on Nadia's computer. 
+- Ceasar will maybe try to get CodeGen running on Google Colab, but the easiest way is to use the Borealis infrastructure.
+- For the project, we will match keywords to the keyword that is geometrically closest in the language we want (compare each word's CodeGen embeddings to other word's embeddings).
+
+ ## To-do list:
+1) Nadia : figure out and setup the infrastructure.
+2) Olivia : will look at how to make a VSCode plugin.
+3) Meet again on Sunday to touch base. 
+ 
+ ## What was done this week:
+ - 
+
+ ## Additional notes:
+ - 
+
+ </details>
