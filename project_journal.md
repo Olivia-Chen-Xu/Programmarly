@@ -103,3 +103,28 @@
  - 
 
  </details>
+
+
+<details>
+<summary> Meeting #8 - Nov. 24th </summary>
+<br>
+
+## Discussion items : 
+ - Giuseppe will take a look at the CodeGen repo to see if there is a way to extract the representations. *model/src/model/transformer.py* has a self.embeddings attribute. Giuseppe will see if he can isolate this portion of the code (should be a big matrix) and will try to provide us with a dictionary (take a word and give an ID) and the embedding takes the ID and gives a vector. The vectors that have the strongest dot products are the ones we will use for our recommendation.
+ - This should be one .pth file (pytorch) and one dictionary. 
+ - If he can isolate that part, we might not need to run the conda and the whole CodeGen. 
+ - In the meantime, we have to get the list of words to use for our demo. 
+
+ ## To-do list:
+ 1) Collect list of all "bad things" we might want to detect, for example all the Java keywords
+ 2) For each item in this list, we put in CodeGen to find the most similar keyword in Python
+ 3) We now have two side by side lists (translations) and we save that as a .json
+ 4) The VSCode plugin reads that .json 
+ 
+ ## What was done this week:
+ - 
+
+ ## Additional notes:
+ - 
+
+ </details>
