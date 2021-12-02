@@ -1,6 +1,11 @@
 ## Programmarly - Grammarly for Programmers
 
+Frustrated by having to constantly look up syntax when you just switched to a new language?
+Programmarly is the solution!
+
 Programmarly is a VS Code extension that corrects code misuse in real-time, from Java to Python, powered by machine learning.
+
+https://user-images.githubusercontent.com/85253089/144355896-1d6f5889-5883-4f53-9732-6112b22b328b.mp4
 
 Source code for the extension is in the **[extension](https://github.com/Olivia-Chen-Xu/Programmarly/blob/main/extension)** repo
 
