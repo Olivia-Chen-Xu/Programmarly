@@ -3,7 +3,7 @@
 Frustrated by having to constantly look up syntax when you just switched to a new language?
 Programmarly is the solution!
 
-Programmarly is a VS Code extension that corrects code misuse in real-time, from Java to Python, powered by machine learning.
+Programmarly is a VS Code extension that corrects code misuse in real-time powered by machine learning. It currently supports Java to Python correction.
 
 https://user-images.githubusercontent.com/85253089/144355896-1d6f5889-5883-4f53-9732-6112b22b328b.mp4
 
