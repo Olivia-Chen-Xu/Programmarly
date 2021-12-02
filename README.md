@@ -5,7 +5,11 @@ Programmarly is the solution💡!
 
 Programmarly is a VS Code extension that corrects code misuse in real-time powered by machine learning. It currently supports Java to Python correction.
 
-https://user-images.githubusercontent.com/85253089/144355896-1d6f5889-5883-4f53-9732-6112b22b328b.mp4
+
+
+https://user-images.githubusercontent.com/85253089/144454386-b34e57f4-d68e-4873-b772-ad53bae641cb.mp4
+
+
 
 Source code for the extension is in the **[extension](https://github.com/Olivia-Chen-Xu/Programmarly/blob/main/extension)** repo
 
